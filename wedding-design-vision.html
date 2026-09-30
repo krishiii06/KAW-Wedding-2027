@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Krishna &amp; Vishnu · Wedding Design Vision</title>
+<style>
+/* Layout: WaaS drill-down page. Header, key facts bar, collapsible sections, per-event detail panels. */
+:root {
+  --bg: #f7f6f3; --card: #fff; --soft: #faf9f6; --line: #e0ddd6; --line-2: #ebe9e3;
+  --fg: #1a1a18; --fg-2: #444; --muted: #888; --faint: #aaa;
+  --green: #2d6a30; --green-bg: #edf7ed; --green-bd: #a3d6a6;
+  --red: #9b2828; --red-bg: #fdf0ef; --red-bd: #f0b0b0;
+  --amber: #7a5100; --amber-bg: #fff8e6; --amber-bd: #f5c842;
+  --purple: #4c3aaa; --purple-bg: #f0eefe; --purple-bd: #c0b6f5; --purple-ink: #3a3360; --insight-bg: #f7f5ff;
+  --gold: #c9a84c;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161614; --card: #1f1e1b; --soft: #252420; --line: #36342f; --line-2: #2d2c28;
+  --fg: #efece6; --fg-2: #c9c5bc; --muted: #9a968d; --faint: #75716a;
+  --green: #8fcf93; --green-bg: #1d2b1e; --green-bd: #3d6b40;
+  --red: #f0a3a3; --red-bg: #2f1c1c; --red-bd: #6e3434;
+  --amber: #f0c96a; --amber-bg: #2d2515; --amber-bd: #6b5520;
+  --purple: #b9adf5; --purple-bg: #25213d; --purple-bd: #4f4590; --purple-ink: #d3ccf7; --insight-bg: #211e33;
+  --gold: #d9b95c; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #161614; --card: #1f1e1b; --soft: #252420; --line: #36342f; --line-2: #2d2c28;
+  --fg: #efece6; --fg-2: #c9c5bc; --muted: #9a968d; --faint: #75716a;
+  --green: #8fcf93; --green-bg: #1d2b1e; --green-bd: #3d6b40;
+  --red: #f0a3a3; --red-bg: #2f1c1c; --red-bd: #6e3434;
+  --amber: #f0c96a; --amber-bg: #2d2515; --amber-bd: #6b5520;
+  --purple: #b9adf5; --purple-bg: #25213d; --purple-bd: #4f4590; --purple-ink: #d3ccf7; --insight-bg: #211e33;
+  --gold: #d9b95c; color-scheme: dark; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: var(--font); background: var(--bg); color: var(--fg); font-size: 14px; line-height: 1.6; margin: 0; }
+.page { max-width: 880px; margin: 0 auto; padding: 40px 20px 80px; }
+p { margin: 0; }
+
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.badge, .tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; border: 1px solid; letter-spacing: .03em; white-space: nowrap; }
+.tag { padding: 2px 8px; }
+.b-purple { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
+.b-green { background: var(--green-bg); color: var(--green); border-color: var(--green-bd); }
+.b-amber { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-bd); }
+.b-red { background: var(--red-bg); color: var(--red); border-color: var(--red-bd); }
+.b-gray { background: var(--soft); color: var(--muted); border-color: var(--line); }
+
+.page-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text-wrap: balance; }
+.summary { color: var(--fg-2); line-height: 1.75; max-width: 680px; display: grid; gap: 10px; margin-bottom: 24px; }
+
+.key-facts { display: flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-bottom: 28px; background: var(--card); }
+.kf { flex: 1 1 160px; padding: 12px 16px; border-right: 1px solid var(--line); }
+.kf:last-child { border-right: none; }
+.kf-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.kf-val { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.kf-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+.section { margin-bottom: 10px; }
+.section-header { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+.section-header:hover { background: var(--soft); }
+.section-header:focus-visible, .ev:focus-visible, .back-nav:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+.section-header[aria-expanded="true"] { border-radius: 8px 8px 0 0; border-bottom-color: var(--line-2); }
+.section-title { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-weight: 500; }
+.arrow { color: var(--faint); transition: transform .2s; flex-shrink: 0; }
+.section-header[aria-expanded="true"] .arrow { transform: rotate(90deg); }
+.section-body { background: var(--card); border: 1px solid var(--line); border-top: none; border-radius: 0 0 8px 8px; padding: 20px 18px; }
+.hint { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 14px; }
+
+/* timeline */
+.timeline { border-left: 2px solid var(--line); margin-left: 8px; padding-left: 20px; display: grid; gap: 14px; }
+.tl-group { position: relative; }
+.tl-group::before { content: ''; position: absolute; left: -26px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); }
+.tl-date { font-size: 12px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+.ev { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; background: var(--soft); cursor: pointer; font: inherit; color: inherit; text-align: left; margin-bottom: 6px; }
+.ev:hover { border-color: var(--faint); }
+.ev-main { min-width: 0; flex: 1 1 240px; }
+.ev-name { font-size: 13px; font-weight: 600; }
+.ev-sub { font-size: 12px; color: var(--muted); }
+.ev-tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.ev-tags::after { content: '›'; color: var(--faint); font-size: 15px; margin-left: 4px; }
+
+/* grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.panel { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+.panel-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; color: var(--muted); }
+.panel p, .panel li { font-size: 13px; color: var(--fg-2); line-height: 1.6; }
+.panel ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.panel strong { color: var(--fg); }
+.p-green { border-color: var(--green-bd); } .p-green .panel-label { color: var(--green); }
+.p-purple { border-color: var(--purple-bd); } .p-purple .panel-label { color: var(--purple); }
+.p-amber { border-color: var(--amber-bd); } .p-amber .panel-label { color: var(--amber); }
+
+.ig { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 500; color: var(--purple); text-decoration: none; }
+.ig:hover { text-decoration: underline; }
+.venue-events { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+.insight { border-left: 3px solid var(--purple-bd); background: var(--insight-bg); border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13px; color: var(--purple-ink); line-height: 1.6; margin-top: 16px; }
+.insight strong { color: var(--purple-ink); }
+
+.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.checks li { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--fg-2); }
+.box { width: 14px; height: 14px; border: 1.5px solid var(--faint); border-radius: 3px; flex-shrink: 0; margin-top: 3px; }
+.who { margin-left: auto; font-size: 11px; color: var(--muted); white-space: nowrap; }
+.prose { display: grid; gap: 10px; color: var(--fg-2); font-size: 13.5px; max-width: 660px; }
+
+/* detail panels */
+.back-nav { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 12px; color: var(--muted); cursor: pointer; margin-bottom: 20px; padding: 5px 10px; border-radius: 4px; border: 1px solid var(--line); background: var(--soft); }
+.detail-title { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+.detail-meta { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+.detail-summary { font-size: 13.5px; color: var(--fg-2); line-height: 1.75; max-width: 640px; display: grid; gap: 10px; }
+.detail-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 22px 0 10px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-bottom: 20px; }
+.facts div { background: var(--card); padding: 10px 14px; }
+.facts span { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.facts b { font-size: 14px; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) { .arrow { transition: none; } }
+@media (max-width: 520px) { .kf { border-right: none; border-bottom: 1px solid var(--line); } .kf:last-child { border-bottom: none; } h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ═══ OVERVIEW ═══ -->
+<div id="overview">
+  <div class="badge-row">
+    <span class="badge b-purple">Design brief</span>
+    <span class="badge b-green">Dates locked</span>
+    <span class="badge b-gray">Telugu wedding · Hyderabad</span>
+  </div>
+  <div class="page-label">For Shimna</div>
+  <h1>Krishna &amp; Vishnu — bringing the vision to life</h1>
+  <div class="summary">
+    <p>Hi Shimna! I wanted to put everything in one place, so you can see what's in my head without a hundred WhatsApp messages. We have our engagement in December 2026, then five days of wedding events in Hyderabad in February 2027.</p>
+    <p>I want every event to feel joyful and light, but never rushed or chaotic. Minimalist yet elegant, and as ethereal as possible. Nothing loud or overdone, but deeply rooted in our Telugu traditions.</p>
+    <p>I know our cultures are close but our languages are very different, so wherever I use a Telugu word, I've added a line on what it means.</p>
+    <p>I have <em>so</em> much inspiration, but it's in bits and pieces. I need someone to stitch it all together, fit it to each space, and make it clear enough that the decor team can build it as is. Tap any event below to see its details.</p>
+  </div>
+
+  <div class="key-facts">
+    <div class="kf"><div class="kf-label">Events</div><div class="kf-val">7</div><div class="kf-sub">1 in Dec, 6 in Feb</div></div>
+    <div class="kf"><div class="kf-label">Main spaces</div><div class="kf-val">3 venues</div><div class="kf-sub">+ 2 smaller spaces</div></div>
+    <div class="kf"><div class="kf-label">Guests</div><div class="kf-val">~40 → 750</div><div class="kf-sub">Family rituals to wedding night</div></div>
+    <div class="kf"><div class="kf-label">The feeling</div><div class="kf-val" style="color:var(--purple)">Minimal · ethereal</div><div class="kf-sub">Joyful, unhurried, Telugu at heart</div></div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="s-timeline">
+      <span class="section-title">The events, in order <span class="tag b-amber">1 date still flexible</span></span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-timeline">
+      <p class="hint">Tap any event for the full picture</p>
+      <div class="timeline">
+        <div class="tl-group">
+          <div class="tl-date">Fri, Dec 11, 2026</div>
+          <button class="ev" data-detail="engagement"><span class="ev-main"><span class="ev-name">Engagement</span><br><span class="ev-sub">House of Aiva, Glasshouse · 150 guests</span></span><span class="ev-tags"><span class="tag b-gray">Indoor</span><span class="tag b-red">Starts first</span></span></button>
+        </div>
+        <div class="tl-group">
+          <div class="tl-date">Sun, Feb 21, 2027</div>
+          <button class="ev" data-detail="pellikoduku"><span class="ev-main"><span class="ev-name">Pellikoduku</span><br><span class="ev-sub">Vishnu's groom ritual · his grandfather's home · family</span></span><span class="ev-tags"><span class="tag b-gray">Indoor</span><span class="tag b-green">Light touch</span></span></button>
+          <button class="ev" data-detail="cocktail"><span class="ev-main"><span class="ev-name">Cocktail</span><br><span class="ev-sub">Farmhouse · 100 close friends · night of 21st or 22nd</span></span><span class="ev-tags"><span class="tag b-amber">Night TBC</span></span></button>
+        </div>
+        <div class="tl-group">
+          <div class="tl-date">Mon, Feb 22, 2027</div>
+          <button class="ev" data-detail="pellikuthuru"><span class="ev-main"><span class="ev-name">Pellikuthuru</span><br><span class="ev-sub">My bride ritual · Rhythm Events Space · family</span></span><span class="ev-tags"><span class="tag b-gray">Indoor</span><span class="tag b-green">Light touch</span></span></button>
+        </div>
+        <div class="tl-group">
+          <div class="tl-date">Tue, Feb 23, 2027</div>
+          <button class="ev" data-detail="nalugu"><span class="ev-main"><span class="ev-name">Mangalsnanam / Nalugu</span><br><span class="ev-sub">Our turmeric ceremony · Rhythm garden · morning · 120–150 guests</span></span><span class="ev-tags"><span class="tag b-gray">Outdoor</span></span></button>
+          <button class="ev" data-detail="carnival"><span class="ev-main"><span class="ev-name">Carnival</span><br><span class="ev-sub">Godavari-inspired fair, replaces Mehendi + Sangeeth · Rhythm main lawn · from 4pm · ~300 guests</span></span><span class="ev-tags"><span class="tag b-gray">Outdoor</span><span class="tag b-purple">Most design-heavy</span></span></button>
+        </div>
+        <div class="tl-group">
+          <div class="tl-date">Wed, Feb 24, 2027</div>
+          <button class="ev" data-detail="wedding"><span class="ev-main"><span class="ev-name">Wedding</span><br><span class="ev-sub">Aina Events Space · night · 700–750 guests</span></span><span class="ev-tags"><span class="tag b-gray">Outdoor</span><span class="tag b-purple">Biggest scale</span></span></button>
+        </div>
+      </div>
+      <div class="insight"><strong>Feb 23 is our busiest day at Rhythm.</strong> The Nalugu is in the garden that morning and the Carnival opens on the big lawn at 4pm. Both setups will need to go up side by side, so it would help to plan those two together.</div>
+    </div>
+  </div>
+
+  <!-- Spaces -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="s-spaces">
+      <span class="section-title">The spaces <span class="tag b-amber">Photos coming</span></span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-spaces" hidden>
+      <div class="grid">
+        <div class="panel">
+          <div class="panel-label">House of Aiva, Glasshouse</div>
+          <p>Indoor glasshouse. I love it as it is, so I'd rather the design work <em>with</em> the glass than cover it up.</p>
+          <div class="venue-events"><span class="tag b-gray">Engagement</span></div>
+          <a class="ig" href="https://www.instagram.com/houseofaiva_/" target="_blank" rel="noopener">@houseofaiva_ ↗</a>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Rhythm Events Space</div>
+          <p>The farmhouse my family is staying at, so it's basically our home through the wedding. Three events, three different areas.</p>
+          <div class="venue-events"><span class="tag b-gray">Pellikuthuru · indoor</span><span class="tag b-gray">Nalugu · garden</span><span class="tag b-gray">Carnival · main lawn</span></div>
+          <a class="ig" href="https://www.instagram.com/rhythmeventspace/" target="_blank" rel="noopener">@rhythmeventspace ↗</a>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Aina Events Space</div>
+          <p>Outdoor venue for the wedding night itself. 700–750 guests.</p>
+          <div class="venue-events"><span class="tag b-gray">Wedding</span></div>
+          <a class="ig" href="https://www.instagram.com/aina.eventspaces/" target="_blank" rel="noopener">@aina.eventspaces ↗</a>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">Also: Vishnu's grandfather's home (Pellikoduku) and a farmhouse for the cocktail. I'll share photos and videos of every space as I get them.</p>
+    </div>
+  </div>
+
+  <!-- Vision -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="s-vision">
+      <span class="section-title">What I'm dreaming of</span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-vision" hidden>
+      <div class="prose">
+        <p><strong style="color:var(--fg)">Minimalist yet elegant, and as ethereal as possible.</strong> That's the thread through every event. Joyful and unhurried, with that lightness carried through everything from the music to the moments people capture. Guests should feel at ease and part of it, not just watching.</p>
+      </div>
+      <div class="grid" style="margin-top:16px">
+        <div class="panel p-green">
+          <div class="panel-label">What I bring</div>
+          <ul>
+            <li>A lot of inspiration (maybe too much!), sorted by event on Cosmos</li>
+            <li>The Telugu and Andhra traditions each event is built around</li>
+            <li>A clear sense of how I want each moment to feel</li>
+          </ul>
+        </div>
+        <div class="panel p-purple">
+          <div class="panel-label">What I'd love from you</div>
+          <ul>
+            <li>Stitch my bits and pieces into one look per event</li>
+            <li>Fit each design to the real space, its scale and flow</li>
+            <li>Bring your creative side, and tell me when something won't work</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight"><strong>I don't want a copy of my Pinterest board.</strong> I want my ideas to take the right shape, and you're the expert on that. I trust your judgment.</div>
+    </div>
+  </div>
+
+  <!-- Scope -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="s-scope">
+      <span class="section-title">What I'd love your help with <span class="tag b-amber">Scope to define together</span></span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-scope" hidden>
+      <div class="prose"><p>Yes to all of it: decor concepts and 3D visuals, stationery, and overall styling. Honestly, I'm a bit lost on what goes into each one, so I'd love for you to walk me through it.</p></div>
+      <div class="grid" style="margin-top:16px">
+        <div class="panel">
+          <div class="panel-label">What the designs need to do</div>
+          <ul>
+            <li>Show each space in 3D, so I can see it before it's built</li>
+            <li>Be clear enough for the decor team to build exactly that</li>
+            <li>Work with any vendor, even one from another city</li>
+          </ul>
+        </div>
+        <div class="panel p-amber">
+          <div class="panel-label">Could you share</div>
+          <ul>
+            <li>What each deliverable includes, and how many revisions</li>
+            <li>Pricing per event, so I can pick what matters most</li>
+            <li>Timelines, especially for the engagement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="insight"><strong>Maybe we start with the engagement?</strong> It's the soonest, and it would be a nice way to get a feel for working together before February.</div>
+    </div>
+  </div>
+
+  <!-- Budget -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="s-budget">
+      <span class="section-title">About budget <span class="tag b-amber">No number yet</span></span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-budget" hidden>
+      <div class="prose">
+        <p>I honestly don't have a number yet. I want to keep costs as low as I can, but not at the cost of the design or the look.</p>
+        <p>Hyderabad decor quotes feel quite inflated to me. The same work can cost a fraction of that in Vizag or Bangalore, so I'm open to vendors from there. That's a big reason I want strong, buildable designs.</p>
+        <p>A rough idea of what each event might need at its scale would really help me plan.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Next -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="s-next">
+      <span class="section-title">What's coming next</span>
+      <span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="s-next" hidden>
+      <ul class="checks">
+        <li><span class="box"></span>My inspiration, sorted by event<span class="who">Me</span></li>
+        <li><span class="box"></span>Photos and videos of every space<span class="who">Me</span></li>
+        <li><span class="box"></span>Which night the cocktail is (21st or 22nd)<span class="who">Me</span></li>
+        <li><span class="box"></span>Scope breakdown and quote per event<span class="who">You</span></li>
+        <li><span class="box"></span>A call to talk it all through<span class="who">Both of us</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ DETAIL PANELS ═══ -->
+<div class="detail" id="d-engagement" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-red">Starts first</span><span class="badge b-gray">Dec 11, 2026</span></div>
+  <h2 class="detail-title">Engagement</h2>
+  <div class="detail-meta">House of Aiva, Glasshouse · Indoor</div>
+  <div class="facts"><div><span>Guests</span><b>150</b></div><div><span>Setting</span><b>Glasshouse</b></div><div><span>Design priority</span><b>First to design</b></div></div>
+  <div class="detail-summary">
+    <p>Our first event together, and the one we need to start on right away. The glasshouse is already beautiful, so the design should work with the glass and light rather than hide it.</p>
+    <p>This is also a good first project for the two of us before the February events.</p>
+  </div>
+  <div class="detail-label">Coming from me</div>
+  <p style="font-size:13px;color:var(--fg-2)">Venue photos and my engagement inspiration. For now, the venue's Instagram gives a good feel for the space.</p>
+  <a class="ig" href="https://www.instagram.com/houseofaiva_/" target="_blank" rel="noopener">@houseofaiva_ ↗</a>
+</div>
+
+<div class="detail" id="d-pellikoduku" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-green">Light touch</span><span class="badge b-gray">Feb 21, 2027</span></div>
+  <h2 class="detail-title">Pellikoduku</h2>
+  <div class="detail-meta">Vishnu's grandfather's home · Indoor · Family only</div>
+  <div class="detail-summary">
+    <p><em>Pellikoduku</em> means "the groom". It's the ritual where the elders in Vishnu's family bless him, apply turmeric, and dress him as a groom for the first time. It's at his grandfather's home, small and intimate, so it needs gentle styling that respects the home as it is.</p>
+  </div>
+</div>
+
+<div class="detail" id="d-cocktail" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-amber">Night TBC</span><span class="badge b-gray">Feb 21 or 22, 2027</span></div>
+  <h2 class="detail-title">Cocktail</h2>
+  <div class="detail-meta">Farmhouse · Night · Close friends only</div>
+  <div class="facts"><div><span>Guests</span><b>100</b></div><div><span>Time</span><b>Night</b></div><div><span>Vibe</span><b>Easy, fun, social</b></div></div>
+  <div class="detail-summary">
+    <p>Just our close friends, and the most relaxed night of the week. It should still feel like part of the same world as the other events, only a little more playful.</p>
+  </div>
+</div>
+
+<div class="detail" id="d-pellikuthuru" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-green">Light touch</span><span class="badge b-gray">Feb 22, 2027</span></div>
+  <h2 class="detail-title">Pellikuthuru</h2>
+  <div class="detail-meta">Rhythm Events Space · Indoor · Family only</div>
+  <div class="detail-summary">
+    <p><em>Pellikuthuru</em> means "the bride". It's my version of the same ritual: the women in my family bless me, apply turmeric, and dress me as a bride for the first time. It's indoors at the farmhouse where we're staying, small, emotional and just family. Soft, simple styling is all it needs.</p>
+  </div>
+</div>
+
+<div class="detail" id="d-nalugu" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-gray">Feb 23, 2027 · morning</span></div>
+  <h2 class="detail-title">Mangalsnanam / Nalugu</h2>
+  <div class="detail-meta">Rhythm Events Space, garden · Outdoor</div>
+  <div class="facts"><div><span>Guests</span><b>120–150</b></div><div><span>Time</span><b>Morning</b></div><div><span>Reference</span><b>Sobhita Dhulipala's Nalugu</b></div></div>
+  <div class="detail-summary">
+    <p><em>Nalugu</em> is our version of Haldi. Family and friends apply a turmeric paste on us as a blessing, and it's playful and messy in the best way. It's followed by the <em>Mangalsnanam</em>, a ceremonial bath that marks the start of the wedding.</p>
+    <p>It's in the garden, traditional and warm, and very close in spirit to Sobhita Dhulipala's Nalugu. I'll send more inspiration for this one.</p>
+  </div>
+  <div class="insight"><strong>Same day as the Carnival.</strong> The garden setup and the Carnival lawn will be going up at the same time, so the two designs should be planned together.</div>
+</div>
+
+<div class="detail" id="d-carnival" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-purple">Most design-heavy</span><span class="badge b-gray">Feb 23, 2027 · from 4pm</span></div>
+  <h2 class="detail-title">Carnival</h2>
+  <div class="detail-meta">Rhythm Events Space, main lawn · Outdoor</div>
+  <div class="facts"><div><span>Guests</span><b>~300</b></div><div><span>Starts</span><b>4pm, into the night</b></div><div><span>Replaces</span><b>Mehendi + Sangeeth</b></div></div>
+  <div class="detail-summary">
+    <p>The one I'm most excited about! Instead of a Mehendi and Sangeeth, we're doing a carnival inspired by the Godavari region of Andhra, known for its river villages, coconut groves, crafts, food and village fairs. It should work for every age, from our parents to our friends, all in the same space.</p>
+  </div>
+  <div class="detail-label">What's in it</div>
+  <div class="grid">
+    <div class="panel"><div class="panel-label">Art stalls</div><p>Godavari-inspired stalls with traditional art and crafts.</p></div>
+    <div class="panel"><div class="panel-label">Games + activities</div><p>Fun things everyone can join in on, no performing needed.</p></div>
+    <div class="panel"><div class="panel-label">Gorintaku</div><p><em>Gorintaku</em> is henna the old way: fresh leaves ground by hand, applied in simple traditional patterns. It replaces a regular mehendi setup.</p></div>
+  </div>
+  <div class="insight"><strong>This has the most moving parts.</strong> Several zones in one lawn, a daytime-to-night change in light, and a lot of people moving between stalls. The layout and flow matter as much as the look.</div>
+</div>
+
+<div class="detail" id="d-wedding" hidden>
+  <button class="back-nav">← back to overview</button>
+  <div class="badge-row"><span class="badge b-purple">Biggest scale</span><span class="badge b-gray">Feb 24, 2027 · night</span></div>
+  <h2 class="detail-title">Wedding</h2>
+  <div class="detail-meta">Aina Events Space · Outdoor</div>
+  <div class="facts"><div><span>Guests</span><b>700–750</b></div><div><span>Time</span><b>Night</b></div><div><span>Setting</span><b>Outdoor</b></div></div>
+  <div class="detail-summary">
+    <p>The wedding night itself, and by far the biggest scale. Even with 750 people, I want it to feel calm and ethereal, not crowded or heavy. This is where minimal really has to be done right.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.section-header').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    document.getElementById(btn.getAttribute('aria-controls')).hidden = open;
+  });
+});
+function show(id) {
+  document.getElementById('overview').hidden = !!id;
+  document.querySelectorAll('.detail').forEach(function (d) { d.hidden = d.id !== 'd-' + id; });
+  window.scrollTo(0, 0);
+}
+document.querySelectorAll('.ev').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.detail); }); });
+document.querySelectorAll('.back-nav').forEach(function (b) { b.addEventListener('click', function () { show(null); }); });
+</script>
+</body>
+</html>
