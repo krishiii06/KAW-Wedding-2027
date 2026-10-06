@@ -159,6 +159,11 @@ th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); t
 td { padding: 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; color: var(--fg-2); }
 tr:last-child td { border-bottom: none; }
 td:first-child { color: var(--fg); font-weight: 500; }
+.venue-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.vs { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--soft); min-width: 0; }
+.vs-name { font-weight: 600; font-size: 13px; }
+.vs-use { font-size: 12px; color: var(--muted); }
+.vs .ig, .event .ig { margin-top: 8px; }
 .signoff { margin-top: 28px; color: var(--fg-2); font-size: 13.5px; max-width: 680px; display: grid; gap: 8px; }
 </style>
 </head>
@@ -304,23 +309,9 @@ td:first-child { color: var(--fg); font-weight: 500; }
       <div class="prose">
         <p>I've already gathered references and rough sketches for every event. What I need is someone with a real design eye to <strong style="color:var(--fg)">stitch them into one look per event, scale each element to the actual space, and tell me when an idea won't work</strong>.</p>
         <p>The end result should be clear views that a decor vendor can quote and build from as is. Vendors handle materials, quantities and costing themselves.</p>
+        <p>I may use decor vendors from outside Hyderabad, like Vizag or Bangalore, so the designs shouldn't depend on any one vendor's inventory.</p>
       </div>
       <button class="tab-link" data-tab="scope">See the full scope of work →</button>
-    </div>
-  </div>
-
-  <!-- Budget -->
-  <div class="section">
-    <button class="section-header" aria-expanded="false" aria-controls="s-budget">
-      <span class="section-title">About budget <span class="tag b-amber">₹50–60k for design</span></span>
-      <span class="arrow">›</span>
-    </button>
-    <div class="section-body" id="s-budget" hidden>
-      <div class="prose">
-        <p>My design budget is <strong style="color:var(--fg)">₹50,000–60,000 for all seven events combined</strong>. Decor execution, procurement and taxes are a large separate cost, so design support has to stay within this range.</p>
-        <p>I'm also open to decor vendors from outside Hyderabad, like Vizag or Bangalore, so the designs shouldn't depend on any one vendor's inventory.</p>
-      </div>
-      <button class="tab-link" data-tab="scope">How to quote →</button>
     </div>
   </div>
 
@@ -335,7 +326,7 @@ td:first-child { color: var(--fg); font-weight: 500; }
         <li><span class="box"></span>My inspiration, sorted by event<span class="who">Me</span></li>
         <li><span class="box"></span>Photos and videos of every space<span class="who">Me</span></li>
         <li><span class="box"></span>Which night the cocktail is (21st or 22nd)<span class="who">Me</span></li>
-        <li><span class="box"></span>Your quote, in the format on the Scope of work tab<span class="who">You</span></li>
+        <li><span class="box"></span>Your thoughts and a rough quote<span class="who">You</span></li>
         <li><span class="box"></span>A call to talk it all through<span class="who">Both of us</span></li>
       </ul>
     </div>
@@ -453,7 +444,7 @@ td:first-child { color: var(--fg); font-weight: 500; }
     <div class="kf"><div class="kf-label">Events</div><div class="kf-val">7</div><div class="kf-sub">3 main, 4 small</div></div>
     <div class="kf"><div class="kf-label">Elements</div><div class="kf-val">~25</div><div class="kf-sub">17 main + 8 light-touch</div></div>
     <div class="kf"><div class="kf-label">Work type</div><div class="kf-val">Stitch + scale</div><div class="kf-sub">Not design from scratch</div></div>
-    <div class="kf"><div class="kf-label">Design budget</div><div class="kf-val" style="color:var(--purple)">₹50–60k</div><div class="kf-sub">All events, all-in</div></div>
+    <div class="kf"><div class="kf-label">Phases</div><div class="kf-val" style="color:var(--purple)">2</div><div class="kf-sub">Dec 2026, then Feb 2027</div></div>
   </div>
 
   <!-- How it works -->
@@ -478,32 +469,41 @@ td:first-child { color: var(--fg); font-weight: 500; }
       <span class="section-title">The events and what to design <span class="tag b-purple">~25 elements</span></span><span class="arrow">›</span>
     </button>
     <div class="section-body" id="sw-events">
+      <div class="sub-label">The venues</div>
+      <div class="venue-strip">
+        <div class="vs"><div class="vs-name">House of Aiva, Glasshouse</div><div class="vs-use">Engagement</div><a class="ig" href="https://www.instagram.com/houseofaiva_/" target="_blank" rel="noopener">@houseofaiva_ ↗</a></div>
+        <div class="vs"><div class="vs-name">Rhythm Events Space</div><div class="vs-use">Carnival · Nalugu · Pellikuthuru. Also where the bride's family stays.</div><a class="ig" href="https://www.instagram.com/rhythmeventspace/" target="_blank" rel="noopener">@rhythmeventspace ↗</a></div>
+        <div class="vs"><div class="vs-name">Aina Events Space</div><div class="vs-use">Wedding</div><a class="ig" href="https://www.instagram.com/aina.eventspaces/" target="_blank" rel="noopener">@aina.eventspaces ↗</a></div>
+      </div>
       <div class="sub-label">Main events · full element views</div>
 
       <div class="event">
         <div class="event-head">
-          <div><div class="event-name">Engagement</div><div class="event-meta">Fri, Dec 11, 2026 · Indoor glasshouse venue · 150 guests</div></div>
+          <div><div class="event-name">Engagement</div><div class="event-meta">Fri, Dec 11, 2026 · House of Aiva, Glasshouse (indoor) · 150 guests</div></div>
           <span class="tag b-amber">Phase 1</span>
         </div>
         <div class="event-what">A glasshouse with small trees growing inside. The design should work with the glass and greenery, not cover them.</div>
+        <a class="ig" href="https://www.instagram.com/houseofaiva_/" target="_blank" rel="noopener">@houseofaiva_ ↗</a>
         <div class="els"><span class="el">Stage + backdrop</span><span class="el">Seating layout around the trees</span><span class="el">Entrance + welcome stands</span><span class="el">Dining area (row seating)</span><span class="el">Tree hangings + overhead florals</span></div>
       </div>
 
       <div class="event">
         <div class="event-head">
-          <div><div class="event-name">Carnival</div><div class="event-meta">Tue, Feb 23, 2027 · Outdoor lawn · 4pm into the night · ~300 guests</div></div>
+          <div><div class="event-name">Carnival</div><div class="event-meta">Tue, Feb 23, 2027 · Rhythm Events Space, main lawn (outdoor) · 4pm into the night · ~300 guests</div></div>
           <span class="tag b-purple">Most design-heavy</span>
         </div>
         <div class="event-what">This replaces the usual Mehendi and Sangeeth. It's a village-fair-style evening inspired by the Godavari region of Andhra Pradesh, with art stalls, games and <em>gorintaku</em> (henna made the traditional way, from fresh leaves ground by hand). Several zones share one lawn, so layout and guest flow matter as much as the look.</div>
+        <a class="ig" href="https://www.instagram.com/rhythmeventspace/" target="_blank" rel="noopener">@rhythmeventspace ↗</a>
         <div class="els"><span class="el">Lawn layout + zoning plan</span><span class="el">Entrance</span><span class="el">Stall design (one base, repeated)</span><span class="el">Gorintaku corner</span><span class="el">Games area</span><span class="el">Lighting + overhead canopy</span></div>
       </div>
 
       <div class="event">
         <div class="event-head">
-          <div><div class="event-name">Wedding</div><div class="event-meta">Wed, Feb 24, 2027 · Outdoor venue · Night · 700–750 guests</div></div>
+          <div><div class="event-name">Wedding</div><div class="event-meta">Wed, Feb 24, 2027 · Aina Events Space (outdoor) · Night · 700–750 guests</div></div>
           <span class="tag b-purple">Biggest scale</span>
         </div>
         <div class="event-what">The main ceremony. The <em>mandapam</em> is the canopied stage where the wedding rituals happen. Even at this scale, it should feel calm and ethereal, not crowded or heavy.</div>
+        <a class="ig" href="https://www.instagram.com/aina.eventspaces/" target="_blank" rel="noopener">@aina.eventspaces ↗</a>
         <div class="els"><span class="el">Mandapam</span><span class="el">Entrance + pathway</span><span class="el">Guest seating layout</span><span class="el">Dining area</span><span class="el">Ambience lighting + florals</span><span class="el">Photo spot</span></div>
       </div>
 
@@ -511,25 +511,25 @@ td:first-child { color: var(--fg); font-weight: 500; }
       <div class="small-grid">
         <div class="event">
           <div class="event-name">Pellikuthuru</div>
-          <div class="event-meta">Feb 22 · Indoor · Family only</div>
+          <div class="event-meta">Mon, Feb 22 · Rhythm Events Space (indoor) · Family only</div>
           <div class="event-what">The bride's ritual, where family bless her and dress her as a bride for the first time.</div>
           <div class="els"><span class="el">Ritual backdrop</span><span class="el">Seating corner</span></div>
         </div>
         <div class="event">
           <div class="event-name">Home decor</div>
-          <div class="event-meta">Feb 21–24 · Family homes</div>
+          <div class="event-meta">Feb 21–24 · Family homes, incl. the groom's grandfather's home (Feb 21)</div>
           <div class="event-what">Simple traditional styling at the family homes, including the groom's ritual (<em>Pellikoduku</em>).</div>
           <div class="els"><span class="el">Entrance + doorway</span><span class="el">Ritual corner</span></div>
         </div>
         <div class="event">
           <div class="event-name">Mangalsnanam / Nalugu</div>
-          <div class="event-meta">Feb 23 morning · Outdoor garden · 120–150</div>
+          <div class="event-meta">Tue, Feb 23, morning · Rhythm Events Space, garden (outdoor) · 120–150</div>
           <div class="event-what">The Telugu version of Haldi: a turmeric blessing followed by a ceremonial bath.</div>
           <div class="els"><span class="el">Ritual setup</span><span class="el">Guest seating + shade</span></div>
         </div>
         <div class="event">
           <div class="event-name">Cocktail</div>
-          <div class="event-meta">Feb 21 or 22 · Night · Farmhouse · 100</div>
+          <div class="event-meta">Feb 21 or 22 · Night · Farmhouse (TBC) · 100</div>
           <div class="event-what">A relaxed night with close friends.</div>
           <div class="els"><span class="el">Bar + lounge styling</span><span class="el">Entrance / photo corner</span></div>
         </div>
@@ -616,7 +616,7 @@ td:first-child { color: var(--fg); font-weight: 500; }
       <div class="grid">
         <div class="panel"><div class="panel-label">References</div><ul><li>Inspiration images organised by event and element</li></ul></div>
         <div class="panel"><div class="panel-label">Sketches</div><ul><li>My rough sketches and layouts for most elements</li></ul></div>
-        <div class="panel"><div class="panel-label">Venues</div><ul><li>Photos, walkthrough videos and measurements of each area</li></ul></div>
+        <div class="panel"><div class="panel-label">Venues</div><ul><li>Photos, walkthrough videos and measurements of each area (Instagram links for each venue are above)</li></ul></div>
         <div class="panel"><div class="panel-label">Decisions</div><ul><li>Quick, consolidated feedback, with one point of contact (me)</li></ul></div>
       </div>
     </div>
@@ -644,25 +644,24 @@ td:first-child { color: var(--fg); font-weight: 500; }
   <!-- Budget -->
   <div class="section">
     <button class="section-header" aria-expanded="true" aria-controls="sw-budget">
-      <span class="section-title">Budget and how to quote <span class="tag b-amber">₹50–60k total</span></span><span class="arrow">›</span>
+      <span class="section-title">If this feels like a fit</span><span class="arrow">›</span>
     </button>
     <div class="section-body" id="sw-budget">
       <div class="prose">
-        <p>My design budget is <strong>₹50,000–60,000 for all seven events combined</strong>. Decor execution, procurement and taxes are a large separate cost, so design support has to stay within this range.</p>
-        <p>To make quotes easy to compare, please share:</p>
+        <p>I'd love to hear how you'd approach this, along with a rough idea of your fees. If it's easy for you, it would help to see:</p>
       </div>
       <div class="grid" style="margin-top:12px">
         <div class="panel">
-          <div class="panel-label">1. Per-element rates</div>
-          <ul><li>Rate per main event element</li><li>Rate per small event element</li><li>Rate per welcome board graphic</li></ul>
+          <div class="panel-label">Your rates</div>
+          <ul><li>For a main event element</li><li>For a small event element</li><li>For a welcome board</li></ul>
         </div>
         <div class="panel">
-          <div class="panel-label">2. Totals</div>
-          <ul><li>Phase 1 (engagement)</li><li>Phase 2 (February events)</li><li>Full scope</li></ul>
+          <div class="panel-label">A rough total</div>
+          <ul><li>For the engagement</li><li>For the February events</li></ul>
         </div>
         <div class="panel">
-          <div class="panel-label">3. Terms</div>
-          <ul><li>Payment schedule (I'd prefer per phase)</li><li>Turnaround time per event</li><li>2–3 samples of past work</li></ul>
+          <div class="panel-label">How you like to work</div>
+          <ul><li>Your usual timelines and payment terms</li><li>A few pieces of past work you love</li></ul>
         </div>
       </div>
     </div>
