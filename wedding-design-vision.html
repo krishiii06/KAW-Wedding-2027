@@ -119,11 +119,58 @@ h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text
 
 @media (prefers-reduced-motion: reduce) { .arrow { transition: none; } }
 @media (max-width: 520px) { .kf { border-right: none; border-bottom: 1px solid var(--line); } .kf:last-child { border-bottom: none; } h1 { font-size: 22px; } }
+
+/* tabs */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 28px; overflow-x: auto; }
+.tab { font: inherit; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 10px 14px; margin-bottom: -1px; cursor: pointer; white-space: nowrap; }
+.tab:hover { color: var(--fg); }
+.tab[aria-selected="true"] { color: var(--purple); border-bottom-color: var(--purple); }
+.tab:focus-visible, .tab-link:focus-visible { outline: 2px solid var(--purple); outline-offset: 2px; }
+.tab-link { font: inherit; font-size: 12.5px; font-weight: 500; color: var(--purple); background: var(--purple-bg); border: 1px solid var(--purple-bd); border-radius: 999px; padding: 5px 12px; margin-top: 14px; cursor: pointer; }
+.tab-link:hover { text-decoration: underline; }
+
+/* scope of work tab */
+#tab-scope .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+#tab-scope .prose { max-width: 680px; }
+#tab-scope .prose strong { color: var(--fg); }
+.p-red { border-color: var(--red-bd); } .p-red .panel-label { color: var(--red); }
+.sub-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 22px 0 10px; }
+.sub-label:first-child { margin-top: 0; }
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.step { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--soft); min-width: 0; }
+.step-n { font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.step-t { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.step-d { font-size: 12.5px; color: var(--fg-2); }
+.step-who { margin-top: 8px; }
+.event { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
+.event:last-child { margin-bottom: 0; }
+.event-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.event-name { font-weight: 600; font-size: 14px; }
+.event-meta { font-size: 12px; color: var(--muted); }
+.event-what { font-size: 12.5px; color: var(--fg-2); margin-top: 6px; max-width: 640px; }
+.event-what em { font-style: italic; color: var(--fg); }
+.els { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.el { font-size: 12px; padding: 3px 10px; border-radius: 6px; background: var(--soft); border: 1px solid var(--line); color: var(--fg-2); }
+.small-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.small-grid .event { margin-bottom: 0; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; color: var(--fg-2); }
+tr:last-child td { border-bottom: none; }
+td:first-child { color: var(--fg); font-weight: 500; }
+.signoff { margin-top: 28px; color: var(--fg-2); font-size: 13.5px; max-width: 680px; display: grid; gap: 8px; }
 </style>
 </head>
 <body>
 
 <div class="page">
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" id="t-vision" aria-selected="true" data-tab="vision">Design vision</button>
+  <button class="tab" role="tab" id="t-scope" aria-selected="false" data-tab="scope">Scope of work</button>
+</div>
+
+<div id="tab-vision" role="tabpanel" aria-labelledby="t-vision">
 
 <!-- ═══ OVERVIEW ═══ -->
 <div id="overview">
@@ -132,10 +179,10 @@ h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text
     <span class="badge b-green">Dates locked</span>
     <span class="badge b-gray">Telugu wedding · Hyderabad</span>
   </div>
-  <div class="page-label">For Shimna</div>
+  <div class="page-label">For our wedding designer</div>
   <h1>Krishna &amp; Vishnu — bringing the vision to life</h1>
   <div class="summary">
-    <p>Hi Shimna! I wanted to put everything in one place, so you can see what's in my head without a hundred WhatsApp messages. We have our engagement in December 2026, then five days of wedding events in Hyderabad in February 2027.</p>
+    <p>Hi! I wanted to put everything in one place, so you can see what's in my head without a hundred WhatsApp messages. We have our engagement in December 2026, then five days of wedding events in Hyderabad in February 2027.</p>
     <p>I want every event to feel joyful and light, but never rushed or chaotic. Minimalist yet elegant, and as ethereal as possible. Nothing loud or overdone, but deeply rooted in our Telugu traditions.</p>
     <p>I know our cultures are close but our languages are very different, so wherever I use a Telugu word, I've added a line on what it means.</p>
     <p>I have <em>so</em> much inspiration, but it's in bits and pieces. I need someone to stitch it all together, fit it to each space, and make it clear enough that the decor team can build it as is. Tap any event below to see its details.</p>
@@ -250,45 +297,30 @@ h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text
   <!-- Scope -->
   <div class="section">
     <button class="section-header" aria-expanded="false" aria-controls="s-scope">
-      <span class="section-title">What I'd love your help with <span class="tag b-amber">Scope to define together</span></span>
+      <span class="section-title">What I'd love your help with <span class="tag b-green">Scope defined</span></span>
       <span class="arrow">›</span>
     </button>
     <div class="section-body" id="s-scope" hidden>
-      <div class="prose"><p>Yes to all of it: decor concepts and 3D visuals, stationery, and overall styling. Honestly, I'm a bit lost on what goes into each one, so I'd love for you to walk me through it.</p></div>
-      <div class="grid" style="margin-top:16px">
-        <div class="panel">
-          <div class="panel-label">What the designs need to do</div>
-          <ul>
-            <li>Show each space in 3D, so I can see it before it's built</li>
-            <li>Be clear enough for the decor team to build exactly that</li>
-            <li>Work with any vendor, even one from another city</li>
-          </ul>
-        </div>
-        <div class="panel p-amber">
-          <div class="panel-label">Could you share</div>
-          <ul>
-            <li>What each deliverable includes, and how many revisions</li>
-            <li>Pricing per event, so I can pick what matters most</li>
-            <li>Timelines, especially for the engagement</li>
-          </ul>
-        </div>
+      <div class="prose">
+        <p>I've already gathered references and rough sketches for every event. What I need is someone with a real design eye to <strong style="color:var(--fg)">stitch them into one look per event, scale each element to the actual space, and tell me when an idea won't work</strong>.</p>
+        <p>The end result should be clear views that a decor vendor can quote and build from as is. Vendors handle materials, quantities and costing themselves.</p>
       </div>
-      <div class="insight"><strong>Maybe we start with the engagement?</strong> It's the soonest, and it would be a nice way to get a feel for working together before February.</div>
+      <button class="tab-link" data-tab="scope">See the full scope of work →</button>
     </div>
   </div>
 
   <!-- Budget -->
   <div class="section">
     <button class="section-header" aria-expanded="false" aria-controls="s-budget">
-      <span class="section-title">About budget <span class="tag b-amber">No number yet</span></span>
+      <span class="section-title">About budget <span class="tag b-amber">₹50–60k for design</span></span>
       <span class="arrow">›</span>
     </button>
     <div class="section-body" id="s-budget" hidden>
       <div class="prose">
-        <p>I honestly don't have a number yet. I want to keep costs as low as I can, but not at the cost of the design or the look.</p>
-        <p>Hyderabad decor quotes feel quite inflated to me. The same work can cost a fraction of that in Vizag or Bangalore, so I'm open to vendors from there. That's a big reason I want strong, buildable designs.</p>
-        <p>A rough idea of what each event might need at its scale would really help me plan.</p>
+        <p>My design budget is <strong style="color:var(--fg)">₹50,000–60,000 for all seven events combined</strong>. Decor execution, procurement and taxes are a large separate cost, so design support has to stay within this range.</p>
+        <p>I'm also open to decor vendors from outside Hyderabad, like Vizag or Bangalore, so the designs shouldn't depend on any one vendor's inventory.</p>
       </div>
+      <button class="tab-link" data-tab="scope">How to quote →</button>
     </div>
   </div>
 
@@ -303,7 +335,7 @@ h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text
         <li><span class="box"></span>My inspiration, sorted by event<span class="who">Me</span></li>
         <li><span class="box"></span>Photos and videos of every space<span class="who">Me</span></li>
         <li><span class="box"></span>Which night the cocktail is (21st or 22nd)<span class="who">Me</span></li>
-        <li><span class="box"></span>Scope breakdown and quote per event<span class="who">You</span></li>
+        <li><span class="box"></span>Your quote, in the format on the Scope of work tab<span class="who">You</span></li>
         <li><span class="box"></span>A call to talk it all through<span class="who">Both of us</span></li>
       </ul>
     </div>
@@ -401,6 +433,249 @@ h1 { font-size: 26px; font-weight: 600; line-height: 1.2; margin: 0 0 14px; text
 
 </div>
 
+<div id="tab-scope" role="tabpanel" aria-labelledby="t-scope" hidden>
+
+  <div class="badge-row">
+    <span class="badge b-purple">Scope of work</span>
+    <span class="badge b-gray">Telugu wedding · Hyderabad</span>
+    <span class="badge b-gray">Dec 2026 – Feb 2027</span>
+    <span class="badge b-green">Remote design support</span>
+  </div>
+  <div class="page-label">Looking for a wedding designer</div>
+  <h1>Design support for a Telugu wedding</h1>
+  <div class="summary">
+    <p>Hi! I'm planning my own wedding and working directly with decor vendors in Hyderabad. There are seven events between December 2026 and February 2027.</p>
+    <p>I already have the vision, references and rough sketches for each event. I'm looking for a designer to <strong>stitch them into one cohesive look per event, scale each element to the real venue using dimensions I provide, and bring their creative eye</strong>. That includes telling me when an idea won't work in the space or could look better.</p>
+    <p>What I need at the end is a clear view of every element that a decor vendor can quote and build from as is. The vendors handle materials, quantities, fabrication and costing themselves. The look throughout is minimalist, elegant and ethereal, rooted in Telugu tradition.</p>
+  </div>
+
+  <div class="key-facts">
+    <div class="kf"><div class="kf-label">Events</div><div class="kf-val">7</div><div class="kf-sub">3 main, 4 small</div></div>
+    <div class="kf"><div class="kf-label">Elements</div><div class="kf-val">~25</div><div class="kf-sub">17 main + 8 light-touch</div></div>
+    <div class="kf"><div class="kf-label">Work type</div><div class="kf-val">Stitch + scale</div><div class="kf-sub">Not design from scratch</div></div>
+    <div class="kf"><div class="kf-label">Design budget</div><div class="kf-val" style="color:var(--purple)">₹50–60k</div><div class="kf-sub">All events, all-in</div></div>
+  </div>
+
+  <!-- How it works -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="sw-flow">
+      <span class="section-title">How the work happens</span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-flow">
+      <div class="flow">
+        <div class="step"><div class="step-n">Step 1</div><div class="step-t">I share inputs</div><div class="step-d">References, my rough sketches, venue photos and measurements for each area.</div><div class="step-who"><span class="tag b-green">Me</span></div></div>
+        <div class="step"><div class="step-n">Step 2</div><div class="step-t">You stitch and scale</div><div class="step-d">One cohesive look per event, fitted to the real space, with your suggestions.</div><div class="step-who"><span class="tag b-purple">Designer</span></div></div>
+        <div class="step"><div class="step-n">Step 3</div><div class="step-t">One revision round</div><div class="step-d">I review each event's full set and send one consolidated round of feedback.</div><div class="step-who"><span class="tag b-gray">Both</span></div></div>
+        <div class="step"><div class="step-n">Step 4</div><div class="step-t">Vendor handover</div><div class="step-d">A short call per main event to walk the decor vendor through the views.</div><div class="step-who"><span class="tag b-gray">Both</span></div></div>
+      </div>
+      <div class="insight"><strong>The work is in two phases.</strong> The engagement is first, in December. If it goes well for both of us, we continue with the February wedding events at the same rates.</div>
+    </div>
+  </div>
+
+  <!-- Events -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="sw-events">
+      <span class="section-title">The events and what to design <span class="tag b-purple">~25 elements</span></span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-events">
+      <div class="sub-label">Main events · full element views</div>
+
+      <div class="event">
+        <div class="event-head">
+          <div><div class="event-name">Engagement</div><div class="event-meta">Fri, Dec 11, 2026 · Indoor glasshouse venue · 150 guests</div></div>
+          <span class="tag b-amber">Phase 1</span>
+        </div>
+        <div class="event-what">A glasshouse with small trees growing inside. The design should work with the glass and greenery, not cover them.</div>
+        <div class="els"><span class="el">Stage + backdrop</span><span class="el">Seating layout around the trees</span><span class="el">Entrance + welcome stands</span><span class="el">Dining area (row seating)</span><span class="el">Tree hangings + overhead florals</span></div>
+      </div>
+
+      <div class="event">
+        <div class="event-head">
+          <div><div class="event-name">Carnival</div><div class="event-meta">Tue, Feb 23, 2027 · Outdoor lawn · 4pm into the night · ~300 guests</div></div>
+          <span class="tag b-purple">Most design-heavy</span>
+        </div>
+        <div class="event-what">This replaces the usual Mehendi and Sangeeth. It's a village-fair-style evening inspired by the Godavari region of Andhra Pradesh, with art stalls, games and <em>gorintaku</em> (henna made the traditional way, from fresh leaves ground by hand). Several zones share one lawn, so layout and guest flow matter as much as the look.</div>
+        <div class="els"><span class="el">Lawn layout + zoning plan</span><span class="el">Entrance</span><span class="el">Stall design (one base, repeated)</span><span class="el">Gorintaku corner</span><span class="el">Games area</span><span class="el">Lighting + overhead canopy</span></div>
+      </div>
+
+      <div class="event">
+        <div class="event-head">
+          <div><div class="event-name">Wedding</div><div class="event-meta">Wed, Feb 24, 2027 · Outdoor venue · Night · 700–750 guests</div></div>
+          <span class="tag b-purple">Biggest scale</span>
+        </div>
+        <div class="event-what">The main ceremony. The <em>mandapam</em> is the canopied stage where the wedding rituals happen. Even at this scale, it should feel calm and ethereal, not crowded or heavy.</div>
+        <div class="els"><span class="el">Mandapam</span><span class="el">Entrance + pathway</span><span class="el">Guest seating layout</span><span class="el">Dining area</span><span class="el">Ambience lighting + florals</span><span class="el">Photo spot</span></div>
+      </div>
+
+      <div class="sub-label">Small events · light touch, one simple view per element</div>
+      <div class="small-grid">
+        <div class="event">
+          <div class="event-name">Pellikuthuru</div>
+          <div class="event-meta">Feb 22 · Indoor · Family only</div>
+          <div class="event-what">The bride's ritual, where family bless her and dress her as a bride for the first time.</div>
+          <div class="els"><span class="el">Ritual backdrop</span><span class="el">Seating corner</span></div>
+        </div>
+        <div class="event">
+          <div class="event-name">Home decor</div>
+          <div class="event-meta">Feb 21–24 · Family homes</div>
+          <div class="event-what">Simple traditional styling at the family homes, including the groom's ritual (<em>Pellikoduku</em>).</div>
+          <div class="els"><span class="el">Entrance + doorway</span><span class="el">Ritual corner</span></div>
+        </div>
+        <div class="event">
+          <div class="event-name">Mangalsnanam / Nalugu</div>
+          <div class="event-meta">Feb 23 morning · Outdoor garden · 120–150</div>
+          <div class="event-what">The Telugu version of Haldi: a turmeric blessing followed by a ceremonial bath.</div>
+          <div class="els"><span class="el">Ritual setup</span><span class="el">Guest seating + shade</span></div>
+        </div>
+        <div class="event">
+          <div class="event-name">Cocktail</div>
+          <div class="event-meta">Feb 21 or 22 · Night · Farmhouse · 100</div>
+          <div class="event-what">A relaxed night with close friends.</div>
+          <div class="els"><span class="el">Bar + lounge styling</span><span class="el">Entrance / photo corner</span></div>
+        </div>
+      </div>
+      <div class="insight"><strong>Plus 3 welcome boards</strong>, one each for the engagement, carnival and wedding.</div>
+    </div>
+  </div>
+
+  <!-- Deliverables -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="sw-deliver">
+      <span class="section-title">What I need for each element</span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-deliver">
+      <div class="grid">
+        <div class="panel p-purple">
+          <div class="panel-label">Main event elements</div>
+          <ul>
+            <li>One clear view placed in the actual venue: a 2D plan, a 3D perspective, or both where layout matters</li>
+            <li>Key dimensions labelled (width, height, spacing), based on my measurements</li>
+            <li>A few lines of notes on anything you'd change and why</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Small event elements</div>
+          <ul>
+            <li>One simple sketch or view per element</li>
+            <li>Rough size notes</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Format</div>
+          <ul>
+            <li>Shared as images or a PDF per event</li>
+            <li>Clear enough to send straight to a vendor on WhatsApp</li>
+            <li>AI-assisted renders are completely fine</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- In / out -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="sw-scope">
+      <span class="section-title">In scope and out of scope</span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-scope">
+      <div class="grid">
+        <div class="panel p-green">
+          <div class="panel-label">In scope</div>
+          <ul>
+            <li>Stitching my references into one look per event</li>
+            <li>Scaling each element to the real space</li>
+            <li>Creative input and a reality check on my ideas</li>
+            <li>Element views with key dimensions</li>
+            <li>3 welcome board graphics</li>
+            <li>One revision round per event</li>
+            <li>A short vendor handover call per main event</li>
+          </ul>
+        </div>
+        <div class="panel p-red">
+          <div class="panel-label">Out of scope</div>
+          <ul>
+            <li>Mood boards and design stories</li>
+            <li>Concepts from scratch</li>
+            <li>Material, flower or element lists</li>
+            <li>Pattern, skirting and stationery design</li>
+            <li>Technical or fabrication drawings</li>
+            <li>Vendor sourcing, management or payments</li>
+            <li>On-site visits or supervision</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What I provide -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="sw-provide">
+      <span class="section-title">What I'll provide</span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-provide" hidden>
+      <div class="grid">
+        <div class="panel"><div class="panel-label">References</div><ul><li>Inspiration images organised by event and element</li></ul></div>
+        <div class="panel"><div class="panel-label">Sketches</div><ul><li>My rough sketches and layouts for most elements</li></ul></div>
+        <div class="panel"><div class="panel-label">Venues</div><ul><li>Photos, walkthrough videos and measurements of each area</li></ul></div>
+        <div class="panel"><div class="panel-label">Decisions</div><ul><li>Quick, consolidated feedback, with one point of contact (me)</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="section">
+    <button class="section-header" aria-expanded="false" aria-controls="sw-time">
+      <span class="section-title">Timeline</span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-time" hidden>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phase</th><th>Events</th><th>Final views needed by</th></tr></thead>
+          <tbody>
+            <tr><td>Phase 1</td><td>Engagement</td><td>Mid-November 2026</td></tr>
+            <tr><td>Phase 2</td><td>Carnival, wedding and the 4 small events</td><td>Mid-January 2027</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:12px">This gives vendors about 3–4 weeks to quote and prepare before each event.</p>
+    </div>
+  </div>
+
+  <!-- Budget -->
+  <div class="section">
+    <button class="section-header" aria-expanded="true" aria-controls="sw-budget">
+      <span class="section-title">Budget and how to quote <span class="tag b-amber">₹50–60k total</span></span><span class="arrow">›</span>
+    </button>
+    <div class="section-body" id="sw-budget">
+      <div class="prose">
+        <p>My design budget is <strong>₹50,000–60,000 for all seven events combined</strong>. Decor execution, procurement and taxes are a large separate cost, so design support has to stay within this range.</p>
+        <p>To make quotes easy to compare, please share:</p>
+      </div>
+      <div class="grid" style="margin-top:12px">
+        <div class="panel">
+          <div class="panel-label">1. Per-element rates</div>
+          <ul><li>Rate per main event element</li><li>Rate per small event element</li><li>Rate per welcome board graphic</li></ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">2. Totals</div>
+          <ul><li>Phase 1 (engagement)</li><li>Phase 2 (February events)</li><li>Full scope</li></ul>
+        </div>
+        <div class="panel">
+          <div class="panel-label">3. Terms</div>
+          <ul><li>Payment schedule (I'd prefer per phase)</li><li>Turnaround time per event</li><li>2–3 samples of past work</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="signoff">
+    <p>If this sounds like something you'd enjoy working on, I'd love to hear from you. I'm happy to get on a call and walk you through the vision.</p>
+    <p>Krishna</p>
+  </div>
+</div>
+
+</div>
+
 <script>
 document.querySelectorAll('.section-header').forEach(function (btn) {
   btn.addEventListener('click', function () {
@@ -416,6 +691,16 @@ function show(id) {
 }
 document.querySelectorAll('.ev').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.detail); }); });
 document.querySelectorAll('.back-nav').forEach(function (b) { b.addEventListener('click', function () { show(null); }); });
+function openTab(name, scroll) {
+  document.querySelectorAll('.tab').forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === name)); });
+  document.getElementById('tab-vision').hidden = name !== 'vision';
+  document.getElementById('tab-scope').hidden = name !== 'scope';
+  if (name === 'vision') show(null);
+  try { history.replaceState(null, '', name === 'scope' ? '#scope' : location.pathname + location.search); } catch (e) {}
+  if (scroll !== false) window.scrollTo(0, 0);
+}
+document.querySelectorAll('.tab, .tab-link').forEach(function (b) { b.addEventListener('click', function () { openTab(b.dataset.tab); }); });
+if (location.hash === '#scope') openTab('scope', false);
 </script>
 </body>
 </html>
